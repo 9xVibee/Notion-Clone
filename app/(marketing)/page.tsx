@@ -4,7 +4,7 @@ import Heroes from "./_components/heros";
 
 export default function MarketingPage() {
   return (
-    <div className="min-h-full flex flex-col">
+    <div className="min-h-full flex flex-col dark:bg-[#1f1f1f]">
       <div className="flex flex-col justify-center items-center text-center gap-y-6 md:justify-start flex-1 px-6 pb-10">
         <Heading />
         <Heroes />
