@@ -32,6 +32,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import TrashBox from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -43,6 +44,8 @@ const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+  const toggle = useSearch((store) => store.onOpen);
 
   //! resizing base on isMobile
   useEffect(() => {
@@ -147,7 +150,7 @@ const Navigation = () => {
     <>
       <aside
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[999999]",
+          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -165,7 +168,7 @@ const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={toggle} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item label="New Page" icon={PlusCircle} onClick={handleCreate} />
         </div>
