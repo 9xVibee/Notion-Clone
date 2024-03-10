@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/popover";
 import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -46,6 +47,7 @@ const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
   const toggle = useSearch((store) => store.onOpen);
+  const onOpen = useSettings((store) => store.onOpen);
 
   //! resizing base on isMobile
   useEffect(() => {
@@ -169,7 +171,7 @@ const Navigation = () => {
         <div>
           <UserItem />
           <Item label="Search" icon={Search} isSearch onClick={toggle} />
-          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={onOpen} />
           <Item label="New Page" icon={PlusCircle} onClick={handleCreate} />
         </div>
         <div className="mt-4">
@@ -204,7 +206,7 @@ const Navigation = () => {
         <nav className="bg-transparent px-3 py-2 w-full">
           {isCollapsed && (
             <MenuIcon
-              className="h-6 w-6 text-muted-foreground"
+              className="h-6 w-6 text-black transition md:text-muted-foreground hover:text-black"
               role="button"
               onClick={resetWidth}
             />

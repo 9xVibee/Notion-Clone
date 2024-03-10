@@ -101,7 +101,7 @@ const TrashBox = () => {
                   onClick={(e) => {
                     onRestore(e, doc._id);
                   }}
-                  className="rounded-md p-2 hover:bg-neutral-200"
+                  className="rounded-md p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 >
                   <Undo className="h-4 w-4 text-muted-foreground" />
                 </div>
@@ -112,7 +112,7 @@ const TrashBox = () => {
                 >
                   <div
                     role="button"
-                    className="rounded-md p-2 hover:bg-neutral-200"
+                    className="rounded-md p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   >
                     <Trash className="h-4 w-4 text-muted-foreground" />
                   </div>
