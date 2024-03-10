@@ -81,7 +81,7 @@ export const Item = ({
     const promise = create({
       title: "Untitled",
       parentDocument: id,
-    }).then((docId) => {
+    }).then(() => {
       if (!expanded) {
         onExpand?.();
       }
@@ -125,7 +125,7 @@ export const Item = ({
       <span className="truncate mt-0.5">{label}</span>
       {isSearch && (
         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 ">
-          <span className="text-xs">ctrl</span>K
+          <span className="text-xs mb-0.5">ctrl</span>K
         </kbd>
       )}
       {!!id && (
