@@ -12,7 +12,7 @@ import {
   Trash,
 } from "lucide-react";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 
 import { useMediaQuery } from "usehooks-ts";
@@ -34,6 +34,7 @@ import {
 import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
+import Navbar from "./navbar";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -48,6 +49,8 @@ const Navigation = () => {
 
   const toggle = useSearch((store) => store.onOpen);
   const onOpen = useSettings((store) => store.onOpen);
+
+  const params = useParams();
 
   //! resizing base on isMobile
   useEffect(() => {
@@ -152,7 +155,7 @@ const Navigation = () => {
     <>
       <aside
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
+          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[9999999]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -203,15 +206,19 @@ const Navigation = () => {
         )}
         ref={navbarRef}
       >
-        <nav className="bg-transparent px-3 py-2 w-full">
-          {isCollapsed && (
-            <MenuIcon
-              className="h-6 w-6 text-black transition md:text-muted-foreground hover:text-black"
-              role="button"
-              onClick={resetWidth}
-            />
-          )}
-        </nav>
+        {!!params.documentid ? (
+          <Navbar isCollapsed={isCollapsed} resetWidth={resetWidth} />
+        ) : (
+          <nav className="bg-transparent px-3 py-2 w-full">
+            {isCollapsed && (
+              <MenuIcon
+                className="h-6 w-6 text-black transition md:text-muted-foreground hover:text-black"
+                role="button"
+                onClick={resetWidth}
+              />
+            )}
+          </nav>
+        )}
       </div>
     </>
   );
