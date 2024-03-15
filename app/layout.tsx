@@ -3,6 +3,8 @@ import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+import { EdgeStoreProvider } from "../lib/edgestore";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import ConvexClientProvider from "@/components/provider/convex-provider";
 import ModalProvider from "@/components/provider/modal-provider";
@@ -37,17 +39,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="jotion-theme"
-          >
-            <ModalProvider />
-            <Toaster position="bottom-center" />
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="jotion-theme"
+            >
+              <ModalProvider />
+              <Toaster position="bottom-center" />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>

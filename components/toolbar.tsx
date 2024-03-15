@@ -10,6 +10,7 @@ import { api } from "@/convex/_generated/api";
 
 import TextareaAutosize from "react-textarea-autosize";
 import { Emoji } from "emoji-picker-react";
+import { useCoverImage } from "@/hooks/use-cover-image";
 
 interface ToolbarProps {
   initialData: Doc<"documents">;
@@ -23,6 +24,8 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 
   const update = useMutation(api.documents.update);
   const removeIcon = useMutation(api.documents.removeIcon);
+
+  const coverImage = useCoverImage();
 
   const enableInput = () => {
     if (preview) return;
@@ -101,11 +104,11 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
             </Button>
           </IconPicker>
         )}
-        {!initialData.converImage && !preview && (
+        {!initialData.coverImage && !preview && (
           <Button
             className="text-muted-foreground text-xs"
             variant={"outline"}
-            onClick={() => {}}
+            onClick={coverImage.onOpen}
             size={"sm"}
           >
             <ImageIcon className="h-4 w-4 mr-2" />
