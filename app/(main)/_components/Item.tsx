@@ -51,6 +51,8 @@ export const Item = ({
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
 
+  const router = useRouter();
+
   const { user } = useUser();
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -81,11 +83,11 @@ export const Item = ({
     const promise = create({
       title: "Untitled",
       parentDocument: id,
-    }).then(() => {
+    }).then((docId) => {
       if (!expanded) {
         onExpand?.();
       }
-      // router.push(`/documents/${docId}`);
+      router.push(`/documents/${docId}`);
     });
 
     toast.promise(promise, {
