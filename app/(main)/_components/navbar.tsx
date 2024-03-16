@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import Title from "./Title";
 import Banner from "./banner";
 import Menu from "./menu";
+import Publish from "./publish";
 
 const Navbar = ({ isCollapsed, resetWidth }: NavbarProps) => {
   const params = useParams();
@@ -47,6 +48,7 @@ const Navbar = ({ isCollapsed, resetWidth }: NavbarProps) => {
         <div className="flex items-center justify-between w-full">
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
+            <Publish initialData={document} />
             <Menu documentId={document._id} />
           </div>
         </div>

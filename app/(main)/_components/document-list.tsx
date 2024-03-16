@@ -79,7 +79,7 @@ const DocumentList = ({
               label={doc.title}
               icon={FileIcon}
               documentIcon={doc.icon}
-              active={params.documentId === doc._id}
+              active={params.documentid === doc._id}
               level={level}
               onExpand={() => onExpand(doc._id)}
               expanded={expanded[doc._id]}
