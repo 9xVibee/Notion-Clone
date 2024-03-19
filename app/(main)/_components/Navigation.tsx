@@ -216,7 +216,7 @@ const Navigation = () => {
           <nav className="bg-transparent px-3 py-2 w-full">
             {isCollapsed && (
               <MenuIcon
-                className="h-6 w-6 text-black transition md:text-muted-foreground hover:text-black"
+                className="h-6 w-6 text-muted-foreground hover:text-black"
                 role="button"
                 onClick={resetWidth}
               />

@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-        "z-50 bg-background fixed top-0 flex items-center w-full p-6 dark:bg-[#1f1f1f]",
+        "z-50 bg-background fixed top-0 flex items-center w-full p-2 px-4 md:p-6 dark:bg-[#1f1f1f]",
         scrolled && "border-b shadow-sm"
       )}
     >
@@ -41,10 +41,12 @@ const Navbar = () => {
             <Button variant={"ghost"} size={"sm"} asChild>
               <Link href={"/documents"}>Enter Jotion</Link>
             </Button>
-            <UserButton afterSignOutUrl="/" />
           </>
         )}
-        <ModeToggle />
+        <div className="flex items-center gap-4">
+          <UserButton afterSignOutUrl="/" />
+          <ModeToggle />
+        </div>
       </div>
     </div>
   );
